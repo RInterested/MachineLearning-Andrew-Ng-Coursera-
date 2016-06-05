@@ -73,8 +73,8 @@ A1 = [ones(m, 1) X];
 Z2 = A1 * Theta1';
 A2 = [ones(size(Z2, 1), 1) sigmoid(Z2)];
 Z3 = A2 * Theta2';
-H = A3 = sigmoid(Z3);
-
+A3 = sigmoid(Z3);
+H = A3;
 % step 1 Feedforward and cost function
 J = (1 / m) * sum(sum((-Y) .* log(H) - (1 - Y) .* log(1 - H), 2));
 
@@ -84,8 +84,8 @@ J = J + penalty;
 
 % step 3 Neural Network Gradient (Backpropagation)
 Sigma3 = A3 - Y;
-Sigma2 = (Sigma3 * Theta2 .* sigmoidGradient([ones(size(Z2, 1), 1) Z2]))(:, 2:end);
-
+Sigma2 = (Sigma3 * Theta2 .* sigmoidGradient([ones(size(Z2, 1), 1) Z2]));
+Sigma2 = Sigma2(:, 2:end);
 Delta_1 = Sigma2' * A1;
 Delta_2 = Sigma3' * A2;
 
