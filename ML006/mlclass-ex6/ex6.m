@@ -57,6 +57,13 @@ visualizeBoundaryLinear(X, y, model);
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
+plotData(X, y);
+C = 1000;
+model = svmTrain(X, y, C, @linearKernel, 1e-3, 20);
+visualizeBoundaryLinear(X, y, model);
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
 %% =============== Part 3: Implementing Gaussian Kernel ===============
 %  You will now implement the Gaussian kernel to use
 %  with the SVM. You should complete the code in gaussianKernel.m
@@ -143,6 +150,10 @@ load('ex6data3.mat');
 
 % Train the SVM
 model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
 visualizeBoundary(X, y, model);
 
 fprintf('Program paused. Press enter to continue.\n');
